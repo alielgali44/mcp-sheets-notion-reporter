@@ -1,17 +1,18 @@
-# MCP Sheets & Notion Reporter (Slack/WhatsApp alerts)
+# MCP Sheets & Notion Reporter (+ Slack / WhatsApp alerts)
 
-**What it is:** An MCP server that appends a sale to Google Sheets, recomputes KPIs, generates a short summary/PDF, and posts a team digest (Slack). Optional: send a WhatsApp Cloud API **template** message for order-ready notifications.
+An **MCP** server that turns a spreadsheet into quick daily summaries and team pings.
+- Append a sale to **Google Sheets**
+- Generate a short summary (demo)
+- Post to **Slack** (demo)
+- Optional: send **WhatsApp Cloud API** **template** message (transactional only)
+
+MCP (“USB-C for AI”) lets assistants use standard tools; this server exposes simple **tools** the client can call.  
+- MCP: https://modelcontextprotocol.io  
+- Connect local servers: https://modelcontextprotocol.io/docs/develop/connect-local-servers
 
 ## Quick start
-Create `.env` with:
-- SHEETS_SPREADSHEET_ID, GOOGLE_APPLICATION_CREDENTIALS
-- SLACK_BOT_TOKEN  (for chat.postMessage)
-- NOTION_TOKEN (optional)
-- WHATSAPP_TOKEN / PHONE_ID / TEMPLATE (transactional templates only)
-
-## Example prompts
-- “Add 2× S21 cases @ 45,000 UGX, recompute weekly KPIs, post Slack summary, send ‘order_ready’ template to +2567xxxxxxx.”
-
-## Notes
-- Slack messages via Web API. 
-- WhatsApp **must** use approved **message templates** (no general chatbots).
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python src/server.py
